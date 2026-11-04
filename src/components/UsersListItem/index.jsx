@@ -1,6 +1,7 @@
 import { Component } from 'react';
-import styles from './UsersListItem.module.css'
+// import styles from './UsersListItem.module.css'
 // import classNames from 'classnames'
+import { MdDelete } from "react-icons/md";
 import defaultProfileImage from '../../assets/images.jpeg'
 
 class UsersListItem extends Component {
@@ -37,13 +38,12 @@ class UsersListItem extends Component {
 
         return (
             <li style={itemInlineStyle} onClick={()=> selectUser(id)}>
-                <h2>{firstName} {lastName}</h2>
-                <p>{age}</p>
+                <h2>{firstName} {lastName} (age: {age})</h2>
                 <p>{gender}</p>
                 <img src = {imgSrc} alt = {`Profile image of ${firstName} ${lastName}`} onError = {this.handleImgError}></img>
                 <p>{phone}</p>
                 <p>{title}</p>
-                <button>Delete</button>
+                <button><MdDelete /></button>
             </li>
         );
     }
