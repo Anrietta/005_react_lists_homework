@@ -23,7 +23,7 @@ class UsersListItem extends Component {
 
         {/*тут при деструктуризації user ще можна б додати значення по замовчуванню для кожного елемента на випадок якщо в когось не буде потрібних даних */}
         const {
-            user: {id, firstName, lastName, age, gender, image, phone, company:{title}, isSelected},
+            user: {id, firstName, lastName, age, gender, image, phone, company:{name, title}, isSelected},
             selectUser,
             deleteUser,
         } = this.props;
@@ -42,9 +42,9 @@ class UsersListItem extends Component {
 
                 <h2>{firstName} {lastName} (age: {age})</h2>
                 <p>{gender}</p>
-                <img src = {imgSrc} alt = {`Profile image of ${firstName} ${lastName}`} onError = {this.handleImgError}></img>
-                <p>{phone}</p>
-                <p>{title}</p>
+                <img src = {imgSrc} alt = {`Profile image of ${firstName} ${lastName}`} onError = {this.handleImgError}/>
+                <p>Phone: {phone}</p>
+                <p>Position: {title} at "{name}"</p>
                 <button onClick = {(e) => deleteUser(e, id)}><MdDelete /></button>
             </li>
         );
