@@ -52,13 +52,20 @@ class UsersList extends Component {
             isSelected: !newUsers[foundIndex].isSelected
         };
 
-        console.log(`${id} was clicked`);
+        // console.log(`${id} was clicked`);
+        this.setState({users: newUsers})
+    }
+
+    deleteUserHandler = (e, id) => {
+        e.stopPropagation();
+        const {users} = this.state;
+        const newUsers = users.filter(u => u.id !== id);
+
         this.setState({users: newUsers})
     }
 
     render() {
         const {users, isFetching, error} = this.state;
-        // console.log(users);
 
         return (
             <>
@@ -68,7 +75,13 @@ class UsersList extends Component {
 
                 {!isFetching && !error && (
                     <ul> 
-                        {users.map(u => <UsersListItem key = {u.id} user = {u} selectUser = {this.selectUserClickHandler}/>)}
+                        {users.map(u => <UsersListItem 
+                            key = {u.id} 
+                            user = {u} 
+                            selectUser = {this.selectUserClickHandler} 
+                            deleteUser = {this.deleteUserHandler}
+                            />
+                        )}
                         
                     </ul>
                 )}

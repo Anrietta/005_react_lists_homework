@@ -25,10 +25,10 @@ class UsersListItem extends Component {
         const {
             user: {id, firstName, lastName, age, gender, image, phone, company:{title}, isSelected},
             selectUser,
+            deleteUser,
         } = this.props;
 
         const {hasUserImgErr} = this.state;
-        // console.log(this.props);
 
         const imgSrc = hasUserImgErr ? defaultProfileImage : image;
 
@@ -38,12 +38,14 @@ class UsersListItem extends Component {
 
         return (
             <li style={itemInlineStyle} onClick={()=> selectUser(id)}>
+                {/*додати два обробника на одну подію можна викликаючи обидві в одному CB. Двічі onClick як атрибут на один елемент не можна вішати */}
+
                 <h2>{firstName} {lastName} (age: {age})</h2>
                 <p>{gender}</p>
                 <img src = {imgSrc} alt = {`Profile image of ${firstName} ${lastName}`} onError = {this.handleImgError}></img>
                 <p>{phone}</p>
                 <p>{title}</p>
-                <button><MdDelete /></button>
+                <button onClick = {(e) => deleteUser(e, id)}><MdDelete /></button>
             </li>
         );
     }
