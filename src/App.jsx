@@ -1,10 +1,12 @@
 import './App.css'
+import UsersList from './components/UsersList/index.jsx'
+
 
 function App() {
 
   return (
     <>
-    <div>Hello</div>
+    <UsersList/>
     </>
   )
 }
