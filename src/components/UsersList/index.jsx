@@ -12,9 +12,26 @@ import UsersListItem from '../UsersListItem/index'
 //         image: 'https://dummyjson.com/icon/emmaj/128',
 //         phone: '+91 759-776-1614',
 //         company: {
-//             title: 'Sales Manager'
+//             title: 'Sales Manager',
+//             name: 'knlncdlc knckc d clcndm,c m,d ckjec cnkc kfc kev efkc knd ckef vkfn vkfd vknf vkfn vnkfd vkf vkf vk'
 //         }
+        
+//     },
+//     {
+//         id: 2,
+//         firstName: 'Test',
+//         lastName: 'Testovich',
+//         age: 31,
+//         gender: 'male', 
+//         image: 'https://dummyjson.com/icon/emmaj/128',
+//         phone: '+91 759-776-1614',
+//         company: {
+//             title: 'Sales Manager',
+//             name: 'knlncdlc knckc d c'
+//         }
+        
 //     }
+    
 // ]
 
 class UsersList extends Component {
