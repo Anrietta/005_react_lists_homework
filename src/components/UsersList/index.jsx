@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import style from './UsersList.module.css'
 import UsersListItem from '../UsersListItem/index'
 
 // const usersTemp = [
@@ -30,7 +31,7 @@ class UsersList extends Component {
     componentDidMount() { 
         this.setState({isFetching: true});
         
-        fetch('https://dummyjson.com/users?limit=5&select=id,firstName,lastName,age,gender,image,phone,company')
+        fetch('https://dummyjson.com/users?limit=10&select=id,firstName,lastName,age,gender,image,phone,company')
         .then(response => response.json())
         .then(({users}) => {
             const usersWithSelection = users.map(u => ({
@@ -74,16 +75,19 @@ class UsersList extends Component {
                 {error && <div>!!!Error!!! {JSON.stringify(error.message)}</div>}
 
                 {!isFetching && !error && (
-                    <ul> 
-                        {users.map(u => <UsersListItem 
-                            key = {u.id} 
-                            user = {u} 
-                            selectUser = {this.selectUserClickHandler} 
-                            deleteUser = {this.deleteUserHandler}
-                            />
-                        )}
-                        
-                    </ul>
+                    <>
+                        <h1 className={style.usersListHeader}>Users List: </h1>
+                        <ul className={style.usersList}> 
+                            {users.map(u => <UsersListItem 
+                                key = {u.id} 
+                                user = {u} 
+                                selectUser = {this.selectUserClickHandler} 
+                                deleteUser = {this.deleteUserHandler}
+                                />
+                            )}
+                            
+                        </ul>
+                    </>
                 )}
 
             </>

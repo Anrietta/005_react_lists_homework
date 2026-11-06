@@ -1,0 +1,16 @@
+.usersListHeader {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 34px;
+    font-weight: 600;
+}
+
+.usersList {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Робимо ширшим для кількох карток у ряд */
+    display: flex;
+    flex-wrap: wrap;    /* 👈 Дозволяє карткам переноситися на новий рядок */
+    gap: 20px;          /* Відстань між картками по горизонталі та вертикалі */
+    justify-content: center;
+}

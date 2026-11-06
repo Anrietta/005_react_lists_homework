@@ -1,6 +1,6 @@
 import { Component } from 'react';
-// import styles from './UsersListItem.module.css'
-// import classNames from 'classnames'
+import styles from './UsersListItem.module.css'
+import classNames from 'classnames'
 import { MdDelete } from "react-icons/md";
 import defaultProfileImage from '../../assets/images.jpeg'
 
@@ -12,6 +12,14 @@ class UsersListItem extends Component {
         hasUserImgErr: false,
       }
     }
+
+    // componentDidMount() {
+    //     const {gender} = this.props;
+
+    //     if (gender === 'female') {
+    //         this.setState({isMale: false})
+    //     }
+    // }
 
     handleImgError = () => {
         if (!this.state.hasUserImgErr) {
@@ -32,20 +40,20 @@ class UsersListItem extends Component {
 
         const imgSrc = hasUserImgErr ? defaultProfileImage : image;
 
-        const itemInlineStyle = {
-            backgroundColor: isSelected ? 'green' : 'transparent'
-        }
-
+        const selectedItem = classNames(styles.usersCard, {
+            [styles.selectedMale]: isSelected && gender === 'male',
+            [styles.selectedFemale]: isSelected && gender === 'female',
+        })
         return (
-            <li style={itemInlineStyle} onClick={()=> selectUser(id)}>
+            <li className={selectedItem} onClick={()=> selectUser(id)}>
                 {/*додати два обробника на одну подію можна викликаючи обидві в одному CB. Двічі onClick як атрибут на один елемент не можна вішати */}
 
-                <h2>{firstName} {lastName} (age: {age})</h2>
-                <p>{gender}</p>
-                <img src = {imgSrc} alt = {`Profile image of ${firstName} ${lastName}`} onError = {this.handleImgError}/>
-                <p>Phone: {phone}</p>
-                <p>Position: {title} at "{name}"</p>
-                <button onClick = {(e) => deleteUser(e, id)}><MdDelete /></button>
+                <h2 className={styles.usersCardHeader}>{firstName} {lastName}</h2>
+                <span className={styles.usersCardAge}>(age: {age})</span>
+                <img className={styles.usersCardImage} src = {imgSrc} alt = {`Profile image of ${firstName} ${lastName}`} onError = {this.handleImgError}/>
+                <p className={styles.usersCardPhone}>Phone: {phone}</p>
+                <p className={styles.usersCardPosition}>Position: {title} at "{name}"</p>
+                <button className={styles.usersCardDeleteBtn} onClick = {(e) => deleteUser(e, id)}><MdDelete /></button>
             </li>
         );
     }
